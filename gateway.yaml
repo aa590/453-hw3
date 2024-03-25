@@ -1,0 +1,148 @@
+# openapi2-functions.yaml
+swagger: '2.0'
+info:
+  title: calculator_gateway
+  description: COE453-hw3-t1
+  version: 1.0.0
+schemes:
+  - https
+  - http
+produces:
+  - application/json
+paths:
+  /add:
+    post:
+      summary: Adds two numbers and returns the result.
+      operationId: addIntegers
+      x-google-backend:
+        address: https://us-central1-alert-synapse-418016.cloudfunctions.net/addFunction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              X:
+                type: integer
+              Y:
+                type: integer
+      responses:
+        '200':
+          description: A successful response with the sum of X and Y.
+          schema:
+            type: object
+            properties:
+              X:
+                type: integer
+              Y:
+                type: integer
+              Result:
+                type: integer
+  /sub:
+    post:
+      summary: Subtracts two numbers and returns the result.
+      operationId: subIntegers
+      x-google-backend:
+        address: https://us-central1-alert-synapse-418016.cloudfunctions.net/subFunction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              X:
+                type: integer
+              Y:
+                type: integer
+      responses:
+        '200':
+          description: A successful response with the difference between X and Y.
+          schema:
+            type: object
+            properties:
+              X:
+                type: integer
+              Y:
+                type: integer
+              Result:
+                type: integer
+  /mul:
+    post:
+      summary: Multiplies two numbers and returns the result.
+      operationId: mulIntegers
+      x-google-backend:
+        address: https://us-central1-alert-synapse-418016.cloudfunctions.net/functionMul
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              X:
+                type: integer
+              Y:
+                type: integer
+      responses:
+        '200':
+          description: A successful response with the product of X and Y.
+          schema:
+            type: object
+            properties:
+              X:
+                type: integer
+              Y:
+                type: integer
+              Result:
+                type: integer
+  /div:
+    post:
+      summary: Divides two numbers and returns the result.
+      operationId: divIntegers
+      x-google-backend:
+        address: https://us-central1-alert-synapse-418016.cloudfunctions.net/divFunction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              X:
+                type: integer
+              Y:
+                type: integer
+      responses:
+        '200':
+          description: A successful response with the division of X by Y.
+          schema:
+            type: object
+            properties:
+              X:
+                type: integer
+              Y:
+                type: integer
+              Result:
+                type: number
+        '400':
+          description: Error response when division by zero is attempted.
+          schema:
+            type: string
