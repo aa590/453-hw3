@@ -1,0 +1,14 @@
+exports.divFunction = (req, res) => {
+  const X = req.body.X;
+  const Y = req.body.Y;
+  const result = X / Y;
+  if (Y===0){
+    res.status(400).send('Error: division by zero.');
+} else{
+    res.status(200).send({
+        "X": X,
+        "Y": Y,
+        "Result": result
+    })
+  }
+};
